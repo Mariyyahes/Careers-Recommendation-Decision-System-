@@ -1,0 +1,98 @@
+/* 
+   Careers Recommendation Decision System 
+   suggest sutible career beased on user personality and location 
+*/
+
+/* 
+   suggestCareer is the fundamental rule of our program 
+   it contains a welcome message and questions the user should answer .
+   We use write(' ') and read(Variable) to write questions and read user answers 
+   which are built-in predicates in the prolog.
+   However, We also use an if statement (careers(CareerTitle,Company,G,P)-> true : false) 
+   so the program will display the recommended company link in a clear format. If the user
+   input match one of the program facts the program will display the career title and appropriate
+   company link to apply beased on user personality and geographical preference , else an apology
+   message because of the user location does not match any facts in our program.
+             
+*/
+
+suggestCareer :- write('Welcome to our Careers Recommendation Decision System '),nl, % nl = new line
+                 write('What is your personality type?: '),read(P),                  % P refers to personality  
+                 write('What is your geographical preference: '),read(G),            % G refers to a geographical preference
+                 careers(CareerTitle,Company,G,P)->                               
+                 write('The suitable career for you is : '),write(CareerTitle),nl,              %true 
+                 write('According to your location, this is a suggested company that you can apply to : '),nl,write(Company);
+                 write('Sorry, we can not find suitable career location for your location :(. ' %false
+                 ).
+
+
+
+/* Our program is divided into main categories since we gathered data for occupations and most of them were 
+   into two locations (Riyadh and Jeddah) the career has the following parameters 
+   the job title,the website containing the job application, 
+   G= the job location which is Riyadh
+   P= the user’s personality type
+   and we included (,) to identify the condition as (and) for (Type Personality and Preferred Location)
+   exclamation mark is used to  mitigate backtracking 
+   Second location preference we have jeddah
+   The career has the following the following parameters
+   the job title,the website containing the job application, 
+   G= the job location which is Riyadh
+   P= the user’s personality type
+   and we included (,) to identify the condition as (and) for (Type Personality and Preferred Location)
+   exclamation mark is used to  mitigate backtracking*/
+
+%Riyadh_preferene
+careers(accountant,'https://careers.alrajhibank.com.sa/',G,P):- G = riyadh ,(P= (isfj)),!.	
+careers(artdirector,'https://marifi-center.com/',G,P):- G = riyadh ,(P= (enfj)),!.	
+careers(artist,'https://riyadhart.sa/en/',G,P):- G = riyadh ,(P= (infp)),!.	
+careers(attorney,'https://ha-law.sa/en',G,P):- G = riyadh ,(P= (entp)),!.	
+careers(banktler,'https://careers.alrajhibank.com.sa/',G,P):- G = riyadh ,(P= (isfj)),!.	
+careers(bookkeeper,'https://www.jarir.com/sa-en/about-jarir/job-opportunities',G,P):- G = riyadh ,(P= (isfp)),!.	
+careers(businessAdministrator,'http://www.sadabc.com/',G,P):- G =riyadh  ,(P= (entj)),!.	
+careers(businessAnalyst,'https://datainsight.com.sa/home/',G,P):- G = riyadh ,(P= (istj)),!.	
+careers(certifiedPublicAccountant,'https://www.alahli.com/en-us/about-us/Careeralahli/pages/default.aspx',G,P):- G = riyadh ,(P= (istj)),!.	
+careers(coach,'https://arkansport.com.sa/',G,P):- G =riyadh  ,(P= (estj)),!.	
+careers(composer,'https://musichubs.moc.gov.sa/en/about',G,P):- G = riyadh ,(P= (intp)),!.	
+careers(constructionworker,'https://www.saudibauer.com/en/',G,P):- G = riyadh ,(P= (istp)),!.	
+careers(copywriter,'https://digitect.com/',G,P):- G = riyadh ,(P= (infj)),!.	
+careers(hrManager,'https://www.foodics.com/careers/',G,P):- G = riyadh ,(P= (enfj);P= (infp)),!.	
+careers(creativeDirector,'https://rightclick.com.sa/',G,P):- G = riyadh ,(P= (estp)),!.	
+careers(dentist,'https://www.gamadentalclinic.com/',G,P):- G = riyadh ,(P= (istj)),!.	
+careers(editor,'https://dicema.com/',G,P):- G = riyadh ,(P= (enfp)),!.	
+careers(engineer,'https://www.youtube.com/watch?v=NKzyyxvNiFc',G,P):- G = riyadh ,(P= (istp)),!.	
+careers(eventPlanner,'https://aplus.events/',G,P):- G = riyadh ,(P= (esfp)),!.	
+careers(financial,'https://careers.alrajhibank.com.sa/',G,P):- G = riyadh ,(P= (intj) ; P=(entp) ; P= (estj) ; P=(isfj)),!.	
+careers(forensicscientist,'https://www.aramco.com/en/careers',G,P):- G = riyadh ,(P= (istp)),!.	
+careers(marketingManager,'https://www.ways-sa.com/',G,P):- G = riyadh ,(P= (intj)),!.	
+careers(librarian,'https://www.jarir.com/sa-en/about-jarir/job-opportunities',G,P):- G = riyadh ,(P= (infj)),!.	
+
+%Jeddah_preference
+careers(counselor,'http://albayan-sa.com/',G,P):- G = jeddah ,(P= (intj)),!.	
+careers(hrManager,'https://www.jarir.com/sa-en/about-jarir/job-opportunities',G,P):- G =jeddah,(P= (enfp)),!.	
+careers(guidanceCounselor,'https://riyadhart.sa/en/',G,P):- G = riyadh ,(P= (enfj)),!.	
+careers(managingEditor,'https://www.koraspond.com/',G,P):- G = jeddah ,(P= (intj)),!.	
+careers(hotelHanager,'https://explorehotels.hilton.com/?locale=en_ar&location=24.7135517,%2046.6752957radius=30&title=Riyadh,%20Saudi%20Arabia&currency=Local&Tracking=OM,MB,DLP_EMEA&WT.mc_id=zINDA0EMEA1MB2PSH3GGL4INTBPP5dkt6MULTIBR7_121119391_1003528_%7bdskeywordid%7d&gclid=CjwKCAiA5Y6eBhAbEiwA_2ZWIcArY-UNyyYhfkEl7osj1cSY8QT81MG4SZ-v_bJIYxhKjcGUzXIwjBoCcAEQAvD_BwE&gclsrc=aw.ds',G,P):- G = riyadh ,(P= (estj)),!.	
+careers(mechanicalEngineer,'https://www.dartec.com.sa/',G,P):- G = jeddah ,(P= (entj)),!.	
+careers(mentalHealthProfessional,'https://actcare.com.sa/jobs/',G,P):- G =jeddah,(P= (infp)),!.	
+careers(officeManager,'https://careers.alrajhibank.com.sa/',G,P):- G = jeddah ,( P= (esfj)),!.	
+careers(optician,'https://www.magrabi.com.sa/hospital/magrabi-eye-dental-ear-hospital-jeddah/',G,P):- G = jeddah ,(P= (isfp)),!.	
+careers(paramedic,'https://drfakeehhosp.taleo.net/careersection/dsfh/joblist.ftl?lang=en',G,P):- G = jeddah ,(P= (estp)),!.	
+careers(photographer,'https://www.iphotographer.sa.com/',G,P):- G = jeddah ,(P= (intj)),!.	
+careers(physicalTherapist,'https://www.ipcjeddah.com/',G,P):- G = jeddah ,(P= (intj); P=(infp)),!.	
+careers(productManager,'https://www.jarir.com/sa-en/about-jarir/job-opportunities',G,P):- G = jeddah ,(P= (enfp)),!.	
+careers(professor,'https://www.dah.edu.sa/en/careers/Pages/default.aspx',G,P):- G = jeddah ,(P= (intp)),!.	
+careers(projectCoordinator,'https://digitect.com/',G,P):- G = jeddah ,(P= (estp)),!.	
+careers(psychologist,'https://actcare.com.sa/jobs/',G,P):- G = jeddah ,(P= (infj) ; P=(esfj) ; P= (entp)),!.	
+careers(publicRelationsSpecialist,'https://en-global-jobs.about.ikea.com/location/jeddah-mecca-region-saudi-arabia-jobs/22908/102358-104514-105343/4',G,P):- G = jeddah ,(P= (entj);P= (enfp)),!.	
+careers(researchAnalyst,'https://careers.kaust.edu.sa/',G,P):- G = jeddah ,(P= (isfj)),!.	
+careers(salesManager,'https://jobs.careem.com/',G,P):- G = jeddah ,(P= (enfj);P= (esfp)),!.	
+careers(scientist,'https://careers.kaust.edu.sa/',G,P):- G = jeddah ,(P= (infj)),!.	
+careers(socialMediaManager,'https://www.digitalbridgesa.com/',G,P):- G = jeddah ,(P= (isfp)),!.	
+careers(supplychainmanager,'https://www.aramex.com/us/en/careers-details/career-opportunities',G,P):- G = jeddah ,(P= (istj)),!.	
+careers(teacher,'https://djis.edu.sa/',G,P):- G = jeddah ,(P= (intj)),!.	
+careers(technician,'http://www.few.tv/',G,P):- G = jeddah ,(P= (esfj) ; P=(istp)),!.	
+careers(veterinarian,'https://mypetsa.com/',G,P):- G = jeddah ,(P= (isfp)),!.	
+careers(writer,'https://www.digitalbridgesa.com/',G,P):- G = jeddah ,(P= (infj) ; P=(intp)),!.	
+
+
