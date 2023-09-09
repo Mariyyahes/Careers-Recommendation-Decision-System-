@@ -15,23 +15,3 @@ Nowadays, artificial intelligence (AI) is one of the trendiest technologies that
 ## Solution
 
 Our solution involves creating an expert system with Prolog that selects the ideal career for each MBTI personality type. Additionally, the expert system will offer a job link to simplify the job-searching process. The system will provide personalized career recommendations based on the user's MBTI personality type and geographical preference.
-
-### Key Components
-
-```prolog
-/* 
-   Careers Recommendation Decision System 
-   suggest suitable careers based on user personality and location 
-*/
-
-/* 
-   suggestCareer is the fundamental rule of our program 
-   it contains a welcome message and questions the user should answer.
-   We use write(' ') and read(Variable) to write questions and read user answers, 
-   which are built-in predicates in Prolog.
-   However, We also use an if statement (careers(CareerTitle, Company, G, P) -> true : false) 
-   so the program will display the recommended company link in a clear format. If the user's
-   input matches one of the program facts, the program will display the career title and appropriate
-   company link to apply based on user personality and geographical preference. 
-   Otherwise, it will provide an apology message because the user's location does not match any facts in our program.
-*/
